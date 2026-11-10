@@ -6,6 +6,10 @@ const startButton = document.querySelector('#start-button');
 const stopButton = document.querySelector('#stop-button');
 const destroyButton = document.querySelector('#destroy-button');
 
+function disableButtons() {
+    [initializeButton, startButton, stopButton, destroyButton].forEach(btn => btn.disabled = true);
+}
+
 let barcodeReader = null;
 const config = {
     selector: '.barcode-scanner',
@@ -35,7 +39,7 @@ const config = {
 
 initializeButton.addEventListener('click', async () => {
     try {
-        await StrichSDK.initialize('license-key');
+        await StrichSDK.initialize('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZWUxZGM2ZS0wOWFhLTQ0YmMtOGZhYS02MjAzMDRjNzA4ZmEiLCJpc3MiOiJzdHJpY2guaW8iLCJhdWQiOlsiaHR0cHM6Ly9zdXp1a2llbmcuZ2l0aHViLmlvLyIsImh0dHBzOi8vcHZ0dW4ubmdyb2suZGV2Il0sImlhdCI6MTc5NDMwNjMzMCwibmJmIjoxNzk0MzA2MzMwLCJjYXBhYmlsaXRpZXMiOnt9LCJ2ZXJzaW9uIjoxfQ.m_l54RPvNlK-4pU0Snn1dhBYjtHHRZFQRi4QQp4ZZUY');
         barcodeReader = new BarcodeReader(config);
         await barcodeReader.initialize();
     } catch (e) {
@@ -54,7 +58,7 @@ startButton.addEventListener('click', async () => {
 
 stopButton.addEventListener('click', async () => {
     try {
-        await barcodeReader.stopButton();
+        await barcodeReader.stop();
         messageElem.innerText = `BarcodeReader.stop(): OK`;
     } catch (e) {
         messageElem.innerText = `ERR: ${e.message}`;
