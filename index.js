@@ -43,6 +43,7 @@ initializeButton.addEventListener('click', async () => {
         barcodeReader = new BarcodeReader(config);
         barcodeReader.detected = onDetected;
         await barcodeReader.initialize();
+        messageElem.innerText = `BarcodeReader.initialize(): OK`;
     } catch (e) {
         messageElem.innerText = `ERR: ${e.message}`;
     }
