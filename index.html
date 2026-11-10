@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 18 Pro reproducer</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        *:not(dialog) {
+            margin: 0;
+        }
+        .controls {
+            display: flex;
+            flex-direction: row;
+            padding: 0.5rem 1rem;
+            gap: 0.5rem;
+        }
+        .barcode-scanner {
+            height: 250px;
+            position: relative;
+        }
+        #message {
+            font-size: small;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="barcode-scanner">
+</div>
+
+<p id="message">Loaded</p>
+
+<div class="controls">
+    <button id="initialize-button">Initialize</button>
+    <button disabled id="start-button">Start</button>
+    <button disabled id="stop-button">Start</button>
+    <button disabled id="destroy-button">Destroy</button>
+</div>
+
+<script src="index.js" type="module"></script>
+</body>
+</html>
